@@ -5,7 +5,7 @@ let window = null;
 
 function createWindow() {
   if (window) return;
-  
+
   window = new BrowserWindow({
     width: 1000,
     height: 1000,
@@ -13,17 +13,17 @@ function createWindow() {
       nodeIntegration: true,
     },
   });
-  
+
   if (process.env.NODE_ENV === 'development') {
     window.webContents.openDevTools({
       mode: 'bottom',
     });
   }
-  
-  window.on('closed', function () {
+
+  window.on('closed', function() {
     window = null;
   });
-  
+
   window.loadFile('index.html');
 }
 
@@ -33,13 +33,13 @@ app.on('ready', () => {
   });
 });
 
-app.on('window-all-closed', function () {
+app.on('window-all-closed', function() {
   if (process.platform !== 'darwin') {
     app.quit();
   }
 });
 
-app.on('activate', function () {
+app.on('activate', function() {
   if (!window) {
     createWindow();
   }
